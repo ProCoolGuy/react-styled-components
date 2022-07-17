@@ -1,0 +1,88 @@
+{
+  "name": "styled-components-project",
+  "private": true,
+  "scripts": {
+    "build": "wsrun -p styled-components --exclude-missing build",
+    "postbuild": "cp README.md packages/styled-components/",
+    "postinstall": "wsrun -p styled-components --stages generateErrors",
+    "dev": "wsrun --exclude-missing dev",
+    "flow": "flow check",
+    "lint": "wsrun --exclude-missing lint",
+    "size": "wsrun --exclude-missing lint:size",
+    "test": "wsrun --exclude-missing test",
+    "prepublishOnly": "run-s build test",
+    "prebenchmark": "wsrun --stages --exclude-missing build",
+    "benchmark": "wsrun -p @styled-components/benchmarks --stages start"
+  },
+  "author": "Glen Maddern",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/styled-components/styled-components/issues"
+  },
+  "homepage": "https://styled-components.com",
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-external-helpers": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^26.5.2",
+    "babel-plugin-add-module-exports": "^1.0.2",
+    "babel-plugin-macros": "^2.5.1",
+    "babel-plugin-tester": "^10.0.0",
+    "babel-plugin-transform-react-remove-prop-types": "0.4.24",
+    "bundlewatch": "^0.3.1",
+    "eslint": "^7.11.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "flow-bin": "^0.132.0",
+    "flow-watch": "^2.0.0",
+    "husky": "^4.3.0",
+    "jest": "^26.5.3",
+    "jest-image-snapshot": "^4.2.0",
+    "lint-staged": "^10.4.0",
+    "npm-run-all": "^4.1.2",
+    "prettier": "^2.1.2",
+    "puppeteer": "^1.10.0",
+    "raf": "^3.4.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^1.13.1",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^10.0.0",
+    "rollup-plugin-flow": "github:probablyup/rollup-plugin-flow#breaking-update-flow-remove-types",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.0.1",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-sourcemaps": "^0.4.2",
+    "rollup-plugin-terser": "^5.0.0",
+    "wsrun": "^5.0.2"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn flow"
+    }
+  },
+  "engines": {
+    "node": ">=10"
+  }
+}
